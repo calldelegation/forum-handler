@@ -1,9 +1,9 @@
 export enum PostStauts {
-    backlog,
-    todo,
-    inProgress,
-    closed,
-    reOpen
+    backlog = "backlog",
+    todo = "todo",
+    inProgress = "inProgress",
+    closed = "closed",
+    reOpen = "reOpen"
 }
 
 export type PostType = {
