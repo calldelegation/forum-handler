@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "@vercel/node": "^2.15.3"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.7"
   }
 }

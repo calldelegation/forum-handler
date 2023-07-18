@@ -68,3 +68,10 @@ This command builds and deploys your project, and provides a live URL where you 
 ## Contributing
 
 If you wish to contribute to this project, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
+
+## To do
+
+- [x] Basic fucntion boilerplate
+- [ ] Test scripts
+- [ ] Notion Api
+- [ ] Mongo Api
