@@ -1,13 +1,15 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { parseDiscourseRawToPost, handlePostCreated, handlePostEdited } from "../post";
+import { syslog } from '../services';
 
 export default (req: VercelRequest, res: VercelResponse) => {
   // try catch
   const event = req.headers['x-discourse-event'];
+  const event_type = req.headers['x-discourse-event-type'];
   // parse post request
 
   const post = parseDiscourseRawToPost(req.body.post)
-
+  syslog({ event, event_type, post: req.body.post })
   switch (event) {
     case 'post_created':
       return handlePostCreated(post, res);

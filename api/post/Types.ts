@@ -27,7 +27,7 @@ export type PostType = {
     asignee: string,
 
 }
-
+// todo post event log
 export type PostStautsChange = {
     timestamp: number,
     prev_status: PostStauts,

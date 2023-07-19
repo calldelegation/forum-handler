@@ -6,7 +6,6 @@ export const handlePostCreated = async (post: PostType, res: VercelResponse) => 
     try {
 
         let ticket: any = await notion.getTicketByPost(post.post_id)
-        syslog({ getTicketByPost: ticket })
 
         if (!ticket) {
             ticket = await notion.createTicket(post)
