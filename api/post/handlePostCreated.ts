@@ -1,20 +1,24 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import { notion } from '../services/notion';
+import { notion, syslog } from '../services';
 import { PostType } from './Types';
 
 export const handlePostCreated = async (post: PostType, res: VercelResponse) => {
+    try {
 
+        let ticket: any = await notion.getTicketByPost(post.post_id)
+        syslog({ getTicketByPost: ticket })
 
-    // parse post request
+        if (!ticket) {
+            ticket = await notion.createTicket(post)
+        }
 
-    let ticket: any = await notion.getTicketByPost(post.id)
+        const { discourse_id, notion_id } = ticket
+        // TODO: warp in a custom object?
+        return res.status(200).send({ discourse_id, notion_id });
 
-    if (!ticket) {
-        ticket = await notion.createTicket(post)
+    } catch (error) {
+        syslog({ handlePostCreatedError: JSON.stringify(error) })
+        return res.status(500).send({ error: "error creating post" })
     }
-
-    const forum_id = ticket.properties.forum_id.rich_text[0].plain_text
-    // TODO: warp in a custom object?
-    return res.status(200).send({ forum_id, notionId: ticket.id });
 };
 

@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default function syslog(entry: any): void {
+export function syslog(entry: any): void {
     const filePath = `${__dirname}/../../syslogs.json`;
     console.log('syslog', entry);
     const timestamp = getCurrentUnixTimestamp();
@@ -14,7 +14,7 @@ export default function syslog(entry: any): void {
     }
 
     // Add the new entry to the array
-    entries.push(String({ ...entry, timestamp }));
+    entries.push({ ...entry, timestamp });
 
     // Write the updated array to the file
     fs.writeFileSync(filePath, JSON.stringify(entries, null, 2));

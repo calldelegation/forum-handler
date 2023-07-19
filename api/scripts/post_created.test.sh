@@ -4,18 +4,19 @@
 test_endpoint() {
   local data_path=$1
   local endpoint_url="http://localhost:3000/api/handler"
-  local event_type="topic"
+  local event_type="post"
+  local event="post_created"
   
   # Print the request body
   echo "Request Body:"
   cat "$data_path"
   
   # Send POST request with headers and request body, and print the response
-  local response=$(curl -X POST -H "Content-Type: application/json" -H "x-discourse-event-type: $event_type" --data @"$data_path" "$endpoint_url")
+  local response=$(curl -X POST -H "Content-Type: application/json" -H "x-discourse-event-type: $event_type" -H "X-Discourse-Event: $event" --data @"$data_path" "$endpoint_url")
   echo "Response:"
   echo "$response"
 }
 
 # Call the test_endpoint function with the provided argument
-sample_data_path="../example-events/new-topic.json"
+sample_data_path="../example-events/new-post.json"
 test_endpoint "$sample_data_path"

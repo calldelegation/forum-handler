@@ -1,21 +1,23 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { parseDiscourseRawToPost, handlePostCreated, handlePostEdited } from "../post";
+
 export default (req: VercelRequest, res: VercelResponse) => {
-    const event = req.headers['x-discourse-event'];
-    // parse post request
+  // try catch
+  const event = req.headers['x-discourse-event'];
+  // parse post request
 
-    const post = parseDiscourseRawToPost(req.body.post)
+  const post = parseDiscourseRawToPost(req.body.post)
 
-    switch (event) {
-        case 'post_created':
-            return handlePostCreated(post, res);
+  switch (event) {
+    case 'post_created':
+      return handlePostCreated(post, res);
 
-        case 'post_edited':
-            return handlePostEdited(post, res);
+    case 'post_edited':
+      return handlePostEdited(post, res);
 
-        default:
-            return res.status(400).send({ error: 'Invalid topic event' });
-    }
+    default:
+      return res.status(400).send({ error: 'Invalid post event' });
+  }
 };
 
 /*

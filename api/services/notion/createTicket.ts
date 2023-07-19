@@ -1,11 +1,9 @@
 import { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
 import { PostType } from "../../post";
-import { Client } from "@notionhq/client";
+import { notionClient, databaseId } from "./";
 
-const notionClient = new Client({ auth: process.env.NOTION_KEY })
-const databaseId = process.env.NOTION_DATABASE_ID
 
-export const createTicket = async (post: PostType) => {
+export default async (post: PostType) => {
     const response = await notionClient.pages.create({
         parent: {
             type: "database_id",
@@ -16,29 +14,12 @@ export const createTicket = async (post: PostType) => {
                 title: [
                     {
                         text: {
-                            content: `New topic ${post.id}`,
-                        },
-                    },
-                ],
+                            content: post.topic_title
+                        }
+                    }
+                ]
             },
-            forum_id: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.id,
-                        },
-                    },
-                ],
-            },
-            id: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.id,
-                        },
-                    },
-                ],
-            },
+
             created_timestamp: {
                 number: post.created_timestamp,
             },
@@ -65,6 +46,15 @@ export const createTicket = async (post: PostType) => {
                     {
                         text: {
                             content: post.topic_title,
+                        },
+                    },
+                ],
+            },
+            discourse_id: {
+                rich_text: [
+                    {
+                        text: {
+                            content: post.discourse_id,
                         },
                     },
                 ],
@@ -115,23 +105,19 @@ export const createTicket = async (post: PostType) => {
                 ],
             },
             status: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.status,
-                        },
-                    },
-                ],
+                status: {
+                    name: post.status
+                },
             },
-            asignee: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.asignee,
-                        },
-                    },
-                ],
-            },
+            // asignee: {
+            //     people: [{
+            //         id: "",
+            //         person: {
+            //             email: post.asignee
+            //         }
+            //     }]
+
+            // },
         },
     } as CreatePageParameters);
 
