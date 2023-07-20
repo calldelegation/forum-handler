@@ -2,6 +2,7 @@ export enum TicketStatus {
     backlog = "backlog",
     todo = "todo",
     inProgress = "inProgress",
+    newComment = "newComment",
     closed = "closed",
     reOpen = "reOpen"
 }

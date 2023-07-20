@@ -35,7 +35,7 @@ export const handleTopicEdited = async (topic: Ticket, res: VercelResponse) => {
     } catch (error) {
         // todo create errors common object
         syslog({ handleTicketCreatedError: JSON.stringify(error) })
-        return res.status(500).send({ error: "error editing post" })
+        return res.status(500).send({ error: "error editing topic" })
     }
 
 
