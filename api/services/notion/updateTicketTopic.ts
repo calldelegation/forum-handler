@@ -5,6 +5,15 @@ export const updateTicketTopic = async (notionId: string, newTopicTitle: string)
     const response: any = await notionClient.pages.update({
         page_id: notionId,
         properties: {
+            Name: {
+                title: [
+                    {
+                        text: {
+                            content: newTopicTitle
+                        }
+                    }
+                ]
+            },
             topic_title: {
                 rich_text: [
                     {
