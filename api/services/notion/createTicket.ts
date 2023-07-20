@@ -1,9 +1,9 @@
 import { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
-import { PostType } from "../../post";
+import { Ticket } from "../../ticket";
 import { notionClient, databaseId } from "./";
 
 
-export default async (post: PostType) => {
+export const createTicket = async (post: Ticket) => {
     const response = await notionClient.pages.create({
         parent: {
             type: "database_id",

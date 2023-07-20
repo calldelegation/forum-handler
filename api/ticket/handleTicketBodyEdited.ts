@@ -1,21 +1,21 @@
 import { VercelResponse } from '@vercel/node';
 import { notion, syslog } from '../services';
-import { PostType } from './Types';
-import updateTicketBody from '../services/notion/updateTicketBody';
+import { Ticket } from './Types';
 
-export const handlePostEdited = async (post: PostType, res: VercelResponse) => {
+
+export const handleTicketBodyEdited = async (post: Ticket, res: VercelResponse) => {
     try {
 
-        let ticket = await notion.getTicketByPost(post.post_id)
+        let ticket = await notion.getTicketByTopic(post.topic_id)
 
         if (!ticket) {
             // TODO create err msg const
-            return res.status(400).send({ error: "post_id not found" });
+            return res.status(400).send({ error: "topic_id not found" });
         }
         const { discourse_id, notion_id } = ticket
 
         if (ticket.post_body !== post.post_body) {
-            let last_edited_time = await updateTicketBody(notion_id, post.post_body)
+            let last_edited_time = await notion.updateTicketBody(notion_id, post.post_body)
 
             if (last_edited_time) {
                 return res.status(200).send({ discourse_id, notion_id, last_edited_time });
@@ -27,7 +27,7 @@ export const handlePostEdited = async (post: PostType, res: VercelResponse) => {
 
     } catch (error) {
         // todo create errors common object
-        syslog({ handlePostCreatedError: JSON.stringify(error) })
+        syslog({ handleTicketCreatedError: JSON.stringify(error) })
         return res.status(500).send({ error: "error editing post" })
     }
 

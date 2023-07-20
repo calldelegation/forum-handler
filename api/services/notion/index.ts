@@ -1,9 +1,11 @@
 import { Client } from "@notionhq/client";
-import createTicket from "./createTicket";
-import getTicketByPost from "./getTicketByPost";
 
-const databaseId = process.env.NOTION_DATABASE_ID
+export * from "./createTicket";
+export * from "./getTicketByTopic";
+export * from "./updateTicketBody";
+export * from "./updateTicketTopic";
 
-const notionClient = new Client({ auth: process.env.NOTION_KEY })
+export const databaseId = process.env.NOTION_DATABASE_ID
 
-export { getTicketByPost, createTicket, notionClient, databaseId }
+export const notionClient = new Client({ auth: process.env.NOTION_KEY })
+

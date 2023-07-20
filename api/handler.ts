@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
-import handlePost from "./helpers/post";
+import { handlePost, handleTopic } from "./helpers";
 import { syslog } from './services';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
@@ -12,9 +12,11 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         const eventType = req.headers['x-discourse-event-type'];
         const event = req.headers['x-discourse-event'];
 
-        syslog({ event, eventType })
+        syslog({ event, eventType, body: req.body })
 
         switch (eventType) {
+            case 'topic':
+                return handleTopic(req, res);
             case 'post':
                 return handlePost(req, res);
             default:

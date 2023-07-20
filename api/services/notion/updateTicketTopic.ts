@@ -1,15 +1,15 @@
 import { notionClient } from "./";
 
 
-export const updateTicketBody = async (notionId: string, newPostBody: string) => {
+export const updateTicketTopic = async (notionId: string, newTopicTitle: string) => {
     const response: any = await notionClient.pages.update({
         page_id: notionId,
         properties: {
-            post_body: {
+            topic_title: {
                 rich_text: [
                     {
                         text: {
-                            content: newPostBody,
+                            content: newTopicTitle,
                         },
                     },
                 ],
