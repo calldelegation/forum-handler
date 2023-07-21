@@ -9,19 +9,19 @@ export enum TicketStatus {
 
 export type Ticket = {
     notion_id: string, // notion
-    discourse_id: string,
+    discourse_id: number,
 
     created_timestamp: number,
     created_at: string,
     updated_at: string,
 
     topic_title: string,
-    topic_id: string,
+    topic_id: number,
 
-    post_id: string,
+    post_id: number,
     post_body: string,
 
-    category_id: string,
+    category_id: number,
     creator_username: string,
 
     status: TicketStatus,
@@ -63,25 +63,7 @@ export type NotionTicket = {
         category_id: {
             id: string;
             type: string;
-            rich_text: [
-                {
-                    type: string;
-                    text: {
-                        content: string;
-                        link: null;
-                    };
-                    annotations: {
-                        bold: boolean;
-                        italic: boolean;
-                        strikethrough: boolean;
-                        underline: boolean;
-                        code: boolean;
-                        color: string;
-                    };
-                    plain_text: string;
-                    href: null;
-                }
-            ];
+            number: number;
         };
         updated_at: {
             id: string;
@@ -141,48 +123,12 @@ export type NotionTicket = {
         discourse_id: {
             id: string;
             type: string;
-            rich_text: [
-                {
-                    type: string;
-                    text: {
-                        content: string;
-                        link: null;
-                    };
-                    annotations: {
-                        bold: boolean;
-                        italic: boolean;
-                        strikethrough: boolean;
-                        underline: boolean;
-                        code: boolean;
-                        color: string;
-                    };
-                    plain_text: string;
-                    href: null;
-                }
-            ];
+            number: number;
         };
         post_id: {
             id: string;
             type: string;
-            rich_text: [
-                {
-                    type: string;
-                    text: {
-                        content: string;
-                        link: null;
-                    };
-                    annotations: {
-                        bold: boolean;
-                        italic: boolean;
-                        strikethrough: boolean;
-                        underline: boolean;
-                        code: boolean;
-                        color: string;
-                    };
-                    plain_text: string;
-                    href: null;
-                }
-            ];
+            number: number;
         };
         post_body: {
             id: string;
@@ -238,25 +184,7 @@ export type NotionTicket = {
         topic_id: {
             id: string;
             type: string;
-            rich_text: [
-                {
-                    type: string;
-                    text: {
-                        content: string;
-                        link: null;
-                    };
-                    annotations: {
-                        bold: boolean;
-                        italic: boolean;
-                        strikethrough: boolean;
-                        underline: boolean;
-                        code: boolean;
-                        color: string;
-                    };
-                    plain_text: string;
-                    href: null;
-                }
-            ];
+            number: number;
         };
         forum_id: {
             id: string;

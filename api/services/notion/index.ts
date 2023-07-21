@@ -5,6 +5,7 @@ export * from "./getTicketByTopic";
 export * from "./updateTicketBody";
 export * from "./updateTicketTopic";
 export * from "./setTicketAsNewComment";
+export * from "./setTicketAsClosed";
 
 export const databaseId = process.env.NOTION_DATABASE_ID
 

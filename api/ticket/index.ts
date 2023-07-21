@@ -1,6 +1,7 @@
 export * from './handleTicketCreated'
 export * from './handleTicketBodyEdited'
 export * from './handleTopicEdited'
+export * from './handleTicketClosed'
 export * from './discourseTypes'
 export * from './Types'
 export * from './helpers'

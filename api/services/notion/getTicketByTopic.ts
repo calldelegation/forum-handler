@@ -4,13 +4,13 @@ import { notionClient, databaseId } from "./";
 import { NotionTicket, parseNotionToTicket } from "../../ticket";
 import { syslog } from "../syslog";
 
-export const getTicketByTopic = async (topic_id: string) => {
+export const getTicketByTopic = async (topic_id: number) => {
     try {
         const response = await notionClient.databases.query({
             database_id: databaseId ?? "NO_DATABASE_ID",
             filter: {
                 "property": "topic_id",
-                rich_text: {
+                number: {
                     equals: topic_id
                 }
             }

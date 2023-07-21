@@ -72,6 +72,14 @@ If you wish to contribute to this project, please first discuss the change you w
 ## To do
 
 - [x] Basic fucntion boilerplate
-- [ ] Test scripts
-- [ ] Notion Api
-- [ ] Mongo Api
+- [x] Test scripts
+- [x] Notion Api
+- [x] Create ticket
+- [x] Update ticket
+- [x] New comment 
+- [ ] Closed 
+- [ ] reOpen 
+- [ ] admin commented back (?) 
+- [ ] standard http response object
+- [ ] error codes and msgs constant
+- [ ] ticket event logger

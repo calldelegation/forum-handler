@@ -24,8 +24,13 @@ export default async (req: VercelRequest, res: VercelResponse) => {
         }
 
     } catch (error) {
-        console.log('Internal server error:', error ?? 'NO ERROR');
-        return res.status(500).send({ error: 'server error' })
+
+        syslog({
+            req,
+            error,
+            message: 'Internal server error'
+        });
+        return res.status(500).send({ error: 'Internal server error' })
     }
 };
 

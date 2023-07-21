@@ -19,7 +19,6 @@ export const createTicket = async (post: Ticket) => {
                     }
                 ]
             },
-
             created_timestamp: {
                 number: post.created_timestamp,
             },
@@ -49,33 +48,19 @@ export const createTicket = async (post: Ticket) => {
                         },
                     },
                 ],
+
             },
             discourse_id: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.discourse_id,
-                        },
-                    },
-                ],
+                number: post.discourse_id,
+
             },
             topic_id: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.topic_id,
-                        },
-                    },
-                ],
+                number: post.topic_id,
+
             },
             post_id: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.post_id,
-                        },
-                    },
-                ],
+                number: post.post_id,
+
             },
             post_body: {
                 rich_text: [
@@ -87,13 +72,8 @@ export const createTicket = async (post: Ticket) => {
                 ],
             },
             category_id: {
-                rich_text: [
-                    {
-                        text: {
-                            content: post.category_id,
-                        },
-                    },
-                ],
+                number: post.category_id,
+
             },
             creator_username: {
                 rich_text: [
