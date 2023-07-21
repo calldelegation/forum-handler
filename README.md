@@ -77,9 +77,10 @@ If you wish to contribute to this project, please first discuss the change you w
 - [x] Create ticket
 - [x] Update ticket
 - [x] New comment 
-- [ ] Closed 
-- [ ] reOpen 
-- [ ] admin commented back (?) 
+- [x] Closed 
+- [x] reOpen  
+- [x] admin commented
 - [ ] standard http response object
 - [ ] error codes and msgs constant
 - [ ] ticket event logger
+- [ ] refactor ticket status change functions 
