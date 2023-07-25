@@ -25,3 +25,8 @@ export function getCurrentUnixTimestamp(): number {
     const unixTimestamp = Math.floor(currentTime / 1000);
     return unixTimestamp;
 }
+
+export function getIsoDate(): string {
+    const currentTime = new Date();
+    return currentTime.toISOString();
+}

@@ -1,5 +1,5 @@
 import { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
-import { Ticket } from "../../ticket";
+import { Ticket, parseNotionToTicket } from "../../ticket";
 import { notionClient, databaseId } from "./";
 
 
@@ -101,5 +101,5 @@ export const createTicket = async (post: Ticket) => {
         },
     } as CreatePageParameters);
 
-    return response;
+    return response.id
 };

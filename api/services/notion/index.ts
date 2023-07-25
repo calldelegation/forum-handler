@@ -9,7 +9,11 @@ export * from "./setTicketAsClosed";
 export * from "./setTicketAsReOpen";
 export * from "./setTicketAsBacklog";
 
-export const databaseId = process.env.NOTION_DATABASE_ID
+export * from "./createEventEntry";
+
+
+export const databaseId = process.env.NOTION_DATABASE_ID ?? "MISSING_DB_KEY"
+export const eventsDatabaseId = process.env.NOTION_EVENTS_DATABASE_ID ?? "MISSING_EVENTS_DB_KEY"
 
 export const notionClient = new Client({ auth: process.env.NOTION_KEY })
 

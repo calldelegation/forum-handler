@@ -1,7 +1,6 @@
 import { VercelResponse } from '@vercel/node';
 import { notion, syslog } from '../services';
-import { Ticket } from './Types';
-
+import { Ticket, TicketEventName } from './';
 
 export const handleTicketClosed = async (topic: Ticket, res: VercelResponse) => {
     try {
@@ -17,6 +16,12 @@ export const handleTicketClosed = async (topic: Ticket, res: VercelResponse) => 
         if (!last_edited_time) {
             throw new Error("handleNewReply error");
         }
+
+        await notion.createEventEntry({
+            topic_id: ticket.topic_id,
+            ticket_id: ticket.notion_id,
+            event: TicketEventName.ticketClosed
+        })
 
 
         return res.status(200).send({

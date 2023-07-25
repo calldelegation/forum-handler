@@ -28,14 +28,6 @@ export type Ticket = {
     asignee: string,
 
 }
-// todo post event log
-export type TicketStatusChange = {
-    timestamp: number,
-    prev_status: TicketStatus,
-    next_status: TicketStatus
-    ticket_id: string,
-
-}
 
 
 export type NotionTicket = {
