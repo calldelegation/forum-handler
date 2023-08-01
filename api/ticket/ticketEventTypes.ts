@@ -9,6 +9,7 @@ export enum TicketEventName {
 
 // todo post event log
 export type TicketEvent = {
+    timestamp?: Number
     event: TicketEventName
     ticket_id: string,
     topic_id: number

@@ -1,4 +1,5 @@
-import { DiscoursePost, DiscourseTopic, NotionTicket, TicketStatus, Ticket } from "./";
+import { notion, syslog } from "../services";
+import { DiscoursePost, DiscourseTopic, TicketStatus, Ticket, TicketEvent, TicketEventName } from "./";
 
 export const parseDiscourseTopicToTicket = (rawTopic: DiscourseTopic): Ticket => (
     {
@@ -35,7 +36,7 @@ export const parseDiscoursePostToTicket = (rawPost: DiscoursePost): Ticket => (
     }
 )
 
-export const parseNotionToTicket = (rawPost: NotionTicket): Ticket => ({
+export const parseNotionToTicket = (rawPost: notion.NotionTicket): Ticket => ({
     notion_id: rawPost.id,
     discourse_id: rawPost.properties.discourse_id.number,
     created_timestamp: rawPost.properties.created_timestamp.number,
@@ -50,3 +51,15 @@ export const parseNotionToTicket = (rawPost: NotionTicket): Ticket => ({
     status: TicketStatus[rawPost.properties.status.status.name],
     asignee: "",
 })
+
+export const parseNotionTicketEventToTicketEvent = (rawEvent: notion.NotionTicketEvent): TicketEvent => {
+
+    return ({
+        timestamp: rawEvent.properties.timestamp.number,
+        event: rawEvent.properties.event.rich_text[0].text.content as TicketEventName,
+        ticket_id: rawEvent.properties.ticket_id.rich_text[0].text.content,
+        topic_id: rawEvent.properties.topic_id.number,
+    })
+
+};
+

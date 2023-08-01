@@ -1,9 +1,10 @@
 import { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
 import { Ticket, parseNotionToTicket } from "../../ticket";
-import { notionClient, databaseId } from "./";
+import { notionClient, databaseId, owner_1, owner_2 } from "./";
 
 
 export const createTicket = async (post: Ticket) => {
+    let owner = post.topic_id % 2 === 0 ? owner_1 : owner_2
     const response = await notionClient.pages.create({
         parent: {
             type: "database_id",
@@ -89,15 +90,15 @@ export const createTicket = async (post: Ticket) => {
                     name: post.status
                 },
             },
-            // asignee: {
-            //     people: [{
-            //         id: "",
-            //         person: {
-            //             email: post.asignee
-            //         }
-            //     }]
+            asignee: {
+                people: [{
+                    id: "",
+                    person: {
+                        email: owner
+                    }
+                }]
 
-            // },
+            },
         },
     } as CreatePageParameters);
 

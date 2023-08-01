@@ -1,7 +1,7 @@
 import { QueryDatabaseParameters } from "@notionhq/client/build/src/api-endpoints";
 
-import { notionClient, databaseId } from "./";
-import { NotionTicket, parseNotionToTicket } from "../../ticket";
+import { notionClient, databaseId, NotionTicket } from "./";
+import { parseNotionToTicket } from "../../ticket";
 import { syslog } from "../syslog";
 
 export const getTicketByTopic = async (topic_id: number) => {

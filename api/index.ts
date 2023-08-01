@@ -1,10 +1,19 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 
+
 import { handlePost, handleTopic } from "./helpers";
 import { syslog } from './services';
+import { handleDashboard } from './dashboard';
+
+
 
 export default async (req: VercelRequest, res: VercelResponse) => {
     try {
+
+        if (req.method == 'GET') {
+            return handleDashboard(req, res)
+        }
+
         if (req.method !== 'POST') {
             return res.status(405).send({ error: 'Invalid request method. Only POST is allowed' });
         }

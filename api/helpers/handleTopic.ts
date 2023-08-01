@@ -1,5 +1,6 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { handleTopicEdited, handleTicketClosed, handleTicketReOpen, parseDiscourseTopicToTicket } from "../ticket";
+import { handleDashboard } from '../dashboard';
 
 export const handleTopic = async (req: VercelRequest, res: VercelResponse) => {
     const event = req.headers['x-discourse-event'];
@@ -10,6 +11,7 @@ export const handleTopic = async (req: VercelRequest, res: VercelResponse) => {
             return handleTopicEdited(topic, res)
         case 'topic_closed_status_updated':
             if (!!req.body.topic.closed) {
+                await handleDashboard()
                 return handleTicketClosed(topic, res)
             }
 
